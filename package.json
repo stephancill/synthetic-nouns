@@ -20,8 +20,14 @@
     "ethereum-waffle": "^3.0.0",
     "ethers": "^5.0.0",
     "hardhat-deploy": "^0.10.1",
+    "is-svg": "^4.3.2",
+    "prettier": "^2.7.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.19",
     "ts-node": "^10.4.0",
     "typechain": "^7.0.0",
     "typescript": "^4.5.5"
+  },
+  "scripts": {
+    "start": "FORK=mainnet yarn hardhat node"
   }
 }
