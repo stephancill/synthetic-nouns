@@ -54,7 +54,7 @@ describe("SyntheticNouns", function () {
     expect(uri).to.not.equal(undefined)
     console.log(uri)
     const metadata = JSON.parse(Buffer.from(uri.split(",")[1], "base64").toString())
-    // console.log(metadata.image);
+    console.log(metadata.image)
     ;["name", "description", "image"].forEach((key) => expect(Object.keys(metadata)).to.contain(key))
 
     expect(metadata.description).to.contain(user.address)
@@ -76,9 +76,8 @@ describe("SyntheticNouns", function () {
 
     const uri = await syntheticNouns.tokenURI(1)
     expect(uri).to.not.equal(undefined)
-    console.log(uri)
     const metadata = JSON.parse(Buffer.from(uri.split(",")[1], "base64").toString())
-    // console.log(metadata.image);
+    console.log(metadata.image)
     ;["name", "description", "image"].forEach((key) => expect(Object.keys(metadata)).to.contain(key))
 
     const ensName = await ethers.provider.lookupAddress(vitalikdoteth)
@@ -86,7 +85,7 @@ describe("SyntheticNouns", function () {
     expect(metadata.description).to.contain(ensName)
   })
 
-  it.only("generates a preview given an address", async function () {
+  it("generates a preview given an address", async function () {
     const user = signers[2]
     const b64 = await syntheticNouns.addressPreview(user.address)
     const svg = Buffer.from(b64, "base64").toString()
