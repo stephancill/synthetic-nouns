@@ -55,6 +55,7 @@ contract SyntheticNouns is ERC721 {
         });
     }
 
+    // TODO: Rename to getRandomness
     function getTokenID(address _address) public pure returns (uint256) {
         return uint256(keccak256(abi.encodePacked(_address)));
     }
@@ -66,6 +67,7 @@ contract SyntheticNouns is ERC721 {
      * @dev Call _mintTo with the to address(es).
      */
     function mint() public returns (uint256) {
+        // TODO: Check if account has already minted one
         return _mintTo(msg.sender, _currentNounId++);
     }
 

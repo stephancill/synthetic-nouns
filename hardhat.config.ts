@@ -25,14 +25,14 @@ if (process.env.FORK) {
     hardhatNetwork = {
       chainId: 1,
       forking: {
-        url: `https://mainnet.infura.io/v3/${process.env.INFURA_PROJECT_ID}`
+        url: process.env.RPC_URL!
       }
     }
   }
 }
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.0",
+  solidity: "0.8.6",
   networks: {
     hardhat: hardhatNetwork
   },

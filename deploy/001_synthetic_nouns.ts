@@ -7,12 +7,12 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 
   const {deployer} = await getNamedAccounts()
 
-  await deploy("Greeter", {
+  await deploy("SyntheticNouns", {
     from: deployer,
     log: true,
-    args: ["Hello, Hardhat!"],
+    args: ["0x0cfdb3ba1694c2bb2cfacb0339ad7b1ae5932b63"],
     autoMine: true, // speed up deployment on local network (ganache, hardhat), no effect on live networks
   })
 }
 export default func
-func.tags = ["Greeter"]
+func.tags = ["SyntheticNouns"]
