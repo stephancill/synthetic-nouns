@@ -65,7 +65,7 @@ describe("SyntheticNouns", function () {
   })
 
   it("contains the claimer's ENS name", async function () {
-    // Impersonate nounders.eth
+    // Impersonate vitalik.eth
     const vitalikdoteth = "0xd8da6bf26964af9d7eed9e03e53415d37aa96045"
     await hre.network.provider.request({
       method: "hardhat_impersonateAccount",
@@ -84,5 +84,12 @@ describe("SyntheticNouns", function () {
     const ensName = await ethers.provider.lookupAddress(vitalikdoteth)
 
     expect(metadata.description).to.contain(ensName)
+  })
+
+  it.only("generates a preview given an address", async function () {
+    const user = signers[2]
+    const b64 = await syntheticNouns.addressPreview(user.address)
+    const svg = Buffer.from(b64, "base64").toString()
+    expect(isSvg(svg)).to.be.true
   })
 })
