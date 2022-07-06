@@ -16,8 +16,14 @@ Use `FORK=mainnet` to fork mainnet on the localhost network.
 
 ### Tests
 
+Run node
+
 ```
-npx hardhat test
+FORK=mainnet npx hardhat node
+```
+
+```
+npx hardhat test --network localhost
 ```
 
 ### Deployment

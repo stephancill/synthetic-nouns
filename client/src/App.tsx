@@ -6,13 +6,15 @@ import { jsonRpcProvider } from "wagmi/providers/jsonRpc"
 import { publicProvider } from "wagmi/providers/public"
 import { MintPage } from "./pages/MintPage/MintPage"
 
+const RPC_URL = process.env.REACT_APP_RPC_URL!
+
 const { chains, provider } = configureChains(
   [chain.mainnet],
   [
     jsonRpcProvider({
       static: true,
       rpc: () => ({
-        http: process.env.REACT_APP_RPC_URL!,
+        http: RPC_URL,
       }),
     }),
     // publicProvider(),
@@ -33,7 +35,7 @@ const wagmiClient = createClient({
 export default function App() {
   return (
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains}>
+      <RainbowKitProvider chains={chains} showRecentTransactions={true}>
         <MintPage />
       </RainbowKitProvider>
     </WagmiConfig>

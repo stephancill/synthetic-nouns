@@ -5,6 +5,7 @@ import "@nomiclabs/hardhat-ethers"
 import "hardhat-deploy"
 import dotenv from "dotenv"
 import { HardhatNetworkUserConfig } from "hardhat/types"
+import { INounsDescriptor__factory } from "./types"
 dotenv.config()
 
 // This is a sample Hardhat task. To learn how to create your own go to
@@ -17,6 +18,13 @@ task("accounts", "Prints the list of accounts", async (args, hre) => {
   }
 })
 
+task("t", "test", async (args, hre) => {
+  // Interact with the contract
+  const address = (await hre.deployments.get("NounsDescriptor")).address
+  const descriptor = INounsDescriptor__factory.connect(address, hre.ethers.provider)
+  console.log(await descriptor.backgroundCount()) // Conclusion: Rinkeby contracts could be bugged
+})
+
 let hardhatNetwork: HardhatNetworkUserConfig = {}
 
 if (process.env.FORK) {
@@ -25,8 +33,19 @@ if (process.env.FORK) {
     hardhatNetwork = {
       chainId: 1,
       forking: {
-        url: process.env.RPC_URL!
-      }
+        url: process.env.RPC_URL!,
+        enabled: true,
+      },
+    }
+  }
+  if (process.env.FORK === "rinkeby") {
+    console.log("forking rinkeby")
+    hardhatNetwork = {
+      chainId: 4,
+      forking: {
+        url: process.env.RINKEBY_RPC_URL!,
+        enabled: true,
+      },
     }
   }
 }
@@ -34,7 +53,17 @@ if (process.env.FORK) {
 const config: HardhatUserConfig = {
   solidity: "0.8.6",
   networks: {
-    hardhat: hardhatNetwork
+    hardhat: hardhatNetwork,
+    rinkeby: {
+      chainId: 4,
+      url: process.env.RINKEBY_RPC_URL!,
+      accounts: [process.env.SIGNER_KEY!],
+      verify: {
+        etherscan: {
+          apiKey: process.env.ETHERSCAN_API_KEY!,
+        },
+      },
+    },
   },
   typechain: {
     outDir: "types",
@@ -43,8 +72,8 @@ const config: HardhatUserConfig = {
   namedAccounts: {
     deployer: {
       default: 0,
-    }
-  }
+    },
+  },
 }
 
 export default config

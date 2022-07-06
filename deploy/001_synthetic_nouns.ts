@@ -1,14 +1,42 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 import { DeployFunction } from "hardhat-deploy/types"
+import readline from "readline"
+
+function userInput(query: string): Promise<string> {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  })
+
+  return new Promise((resolve) =>
+    rl.question(query, (ans) => {
+      rl.close()
+      resolve(ans)
+    }),
+  )
+}
 
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
-  const { deployments, getNamedAccounts } = hre
+  const { deployments, getNamedAccounts, getChainId } = hre
   const { deploy } = deployments
 
   const { deployer } = await getNamedAccounts()
 
-  const nounsDescriptor = "0x0cfdb3ba1694c2bb2cfacb0339ad7b1ae5932b63"
-  const ensReverseRecords = "0x3671aE578E63FdF66ad4F3E12CC0c0d71Ac7510C"
+  const chainId = await getChainId()
+  console.log(deployments.getNetworkName())
+  console.log(chainId)
+  const nounsDescriptor = (await deployments.get("NounsDescriptor")).address
+  const ensReverseRecords = (await deployments.get("ReverseRecords")).address
+
+  const confirmation = await userInput(`
+  Confirm chain id: ${chainId}\n
+  Confirm deployer address: ${deployer}\n
+  Confirm Nouns Descriptor Address: ${nounsDescriptor}\n
+  Confirm ENS reverse resolution address: ${ensReverseRecords}\n
+  \n'y' to continue, ENTER to cancel\n`)
+  if (confirmation.toLowerCase() !== "y") {
+    throw new Error("User denied deployment details")
+  }
 
   await deploy("SyntheticNouns", {
     from: deployer,

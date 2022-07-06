@@ -12,10 +12,14 @@ describe("SyntheticNouns", function () {
   beforeEach(async function () {
     signers = await ethers.getSigners()
     const syntheticNounsFactory = new SyntheticNouns__factory(signers[0])
-    syntheticNouns = await syntheticNounsFactory.deploy(
-      "0x0cfdb3ba1694c2bb2cfacb0339ad7b1ae5932b63",
-      "0x3671aE578E63FdF66ad4F3E12CC0c0d71Ac7510C",
-    )
+    const chainId = await hre.getChainId()
+    console.log(hre.deployments.getNetworkName())
+    console.log(chainId)
+
+    const nounsDescriptor = (await hre.deployments.get("NounsDescriptor")).address
+    const ensReverseRecords = (await hre.deployments.get("ReverseRecords")).address
+
+    syntheticNouns = await syntheticNounsFactory.deploy(nounsDescriptor, ensReverseRecords)
     await syntheticNouns.deployed()
   })
 
@@ -52,12 +56,13 @@ describe("SyntheticNouns", function () {
 
     const uri = await syntheticNouns.tokenURI(1)
     expect(uri).to.not.equal(undefined)
-    console.log(uri)
+    // console.log(uri)
     const metadata = JSON.parse(Buffer.from(uri.split(",")[1], "base64").toString())
-    console.log(metadata.image)
+    // console.log(metadata.image)
+    // console.log(metadata.description)
     ;["name", "description", "image"].forEach((key) => expect(Object.keys(metadata)).to.contain(key))
 
-    expect(metadata.description).to.contain(user.address)
+    expect(metadata.description.toLowerCase()).to.contain(user.address.toLowerCase())
 
     const svg = Buffer.from(metadata.image.split(",")[1], "base64").toString()
 
@@ -77,7 +82,7 @@ describe("SyntheticNouns", function () {
     const uri = await syntheticNouns.tokenURI(1)
     expect(uri).to.not.equal(undefined)
     const metadata = JSON.parse(Buffer.from(uri.split(",")[1], "base64").toString())
-    console.log(metadata.image)
+    // console.log(metadata.image)
     ;["name", "description", "image"].forEach((key) => expect(Object.keys(metadata)).to.contain(key))
 
     const ensName = await ethers.provider.lookupAddress(vitalikdoteth)
