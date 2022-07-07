@@ -3,13 +3,13 @@
 ### Run node
 
 ```
-npx hardhat node
+yarn hardhat node
 ```
 
 Optionally export ABIs:
 
 ```
-npx hardhat deploy --export ./client/src/deployments.json --network localhost
+yarn hardhat deploy --export ./client/src/deployments.json --network localhost
 ```
 
 Use `FORK=mainnet` to fork mainnet on the localhost network.
@@ -19,21 +19,48 @@ Use `FORK=mainnet` to fork mainnet on the localhost network.
 Run node
 
 ```
-FORK=mainnet npx hardhat node
+FORK=mainnet yarn hardhat node
 ```
 
 ```
-npx hardhat test --network localhost
+yarn hardhat test --network localhost
+```
+
+#### Test on mainnet fork
+
+Run mainnet fork node
+
+```
+FORK=mainnet yarn hardhat node --no-deploy
+```
+
+Copy mainnet deployments to localhost deployments
+
+```
+mkdir localhost
+cp -r ./deployments/mainnet ./deployments/localhost
+```
+
+Run tests
+
+```
+FORK=mainnet yarn hardhat test --network localhost
 ```
 
 ### Deployment
 
 ```
-npx hardhat deploy
+yarn hardhat deploy
+```
+
+Verify on etherscan
+
+```
+yarn hardhat etherscan-verify --network mainnet
 ```
 
 ### Generate types
 
 ```
-npx hardhat typechain
+yarn hardhat typechain
 ```
