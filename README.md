@@ -19,7 +19,7 @@ Use `FORK=mainnet` to fork mainnet on the localhost network.
 Run node
 
 ```
-FORK=mainnet yarn hardhat node
+FORK=mainnet yarn hardhat node --no-deploy
 ```
 
 ```
@@ -37,8 +37,10 @@ FORK=mainnet yarn hardhat node --no-deploy
 Copy mainnet deployments to localhost deployments
 
 ```
+cd deployments
 mkdir localhost
-cp -r ./deployments/mainnet ./deployments/localhost
+cp -r ./mainnet/ ./localhost/
+cd ..
 ```
 
 Run tests
