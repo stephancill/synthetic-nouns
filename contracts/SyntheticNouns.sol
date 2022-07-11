@@ -130,7 +130,7 @@ contract SyntheticNouns is ERC721 {
     }
 
     /**
-     * @notice Mint a Noun with `nounId` to the provided `to` address.
+     * @notice ENS reverse lookup for address.
      */
     function _reverseName(address _address) internal view returns (string memory name) {
         address[] memory t = new address[](1);
