@@ -1,4 +1,6 @@
-# Basic Sample Hardhat Typescript Project
+# Mintable Synthetic Nouns
+
+Synthetic nouns are nouns that are generated using the hash of the claimer's address as a seed. There exists one per address.
 
 ### Run node
 
