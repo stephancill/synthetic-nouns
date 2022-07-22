@@ -9,7 +9,7 @@ export const MintPage = () => {
   const { address, isConnecting, isDisconnected } = useAccount()
 
   return (
-    <div>
+    <div style={{ display: "flex", justifyContent: "center" }}>
       <h1>Synthetic Nouns</h1>
       <ConnectButton />
       {address && <MintCard address={address} />}

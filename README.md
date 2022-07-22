@@ -28,7 +28,7 @@ FORK=mainnet yarn hardhat node --no-deploy
 yarn hardhat test --network localhost
 ```
 
-#### Test on mainnet fork
+### Test on mainnet fork
 
 Run mainnet fork node
 
@@ -39,9 +39,9 @@ FORK=mainnet yarn hardhat node --no-deploy
 Copy mainnet deployments to localhost deployments
 
 ```
-cd deployments
-mkdir localhost
-cp -r ./mainnet/ ./localhost/
+cd deployments &&
+mkdir localhost &&
+cp -r ./mainnet/ ./localhost/ &&
 cd ..
 ```
 
@@ -49,6 +49,29 @@ Run tests
 
 ```
 FORK=mainnet yarn hardhat test --network localhost
+```
+
+### Client
+
+Start node
+
+```
+FORK=mainnet yarn hardhat node --no-deploy
+```
+
+Copy mainnet deployments to localhost deployments
+
+```
+cd deployments &&
+mkdir localhost &&
+cp -r ./mainnet/ ./localhost/ &&
+cd ..
+```
+
+Update deployments file
+
+```
+yarn hardhat deploy --export ./client/src/deployments.json --network localhost
 ```
 
 ### Deployment

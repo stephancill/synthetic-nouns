@@ -2,8 +2,14 @@
   "name": "localhost",
   "chainId": "1",
   "contracts": {
+    "NounsDescriptor": {
+      "address": "0x0cfdb3ba1694c2bb2cfacb0339ad7b1ae5932b63"
+    },
+    "ReverseRecords": {
+      "address": "0x3671aE578E63FdF66ad4F3E12CC0c0d71Ac7510C"
+    },
     "SyntheticNouns": {
-      "address": "0x976C214741b4657bd99DFD38a5c0E3ac5C99D903",
+      "address": "0x01E21d7B8c39dc4C764c19b308Bd8b14B1ba139E",
       "abi": [
         {
           "inputs": [
