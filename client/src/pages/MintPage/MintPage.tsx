@@ -41,7 +41,7 @@ export const MintPage = () => {
           >
             <img src={etherscan} alt="Etherscan" />
           </a>
-          <a href={`collection/synthetic-nouns`} target="_blank" rel="noopener noreferrer">
+          <a href={`https://opensea.io/collection/synthetic-nouns`} target="_blank" rel="noopener noreferrer">
             <img src={opensea} alt="OpenSea" />
           </a>
         </div>
