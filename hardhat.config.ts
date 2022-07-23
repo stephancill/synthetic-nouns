@@ -25,6 +25,13 @@ task("t", "test", async (args, hre) => {
   console.log(await descriptor.backgroundCount()) // Conclusion: Rinkeby contracts could be bugged
 })
 
+task("p", "pending", async (args, hre) => {
+  // Interact with the contract
+  const { ethers } = hre
+  const address = new ethers.Wallet(process.env.SIGNER_KEY!).address
+  // const txs = ethers.provider.getTransactionCount
+})
+
 let hardhatNetwork: HardhatNetworkUserConfig = {}
 
 if (process.env.FORK) {
@@ -63,6 +70,11 @@ const config: HardhatUserConfig = {
           apiKey: process.env.ETHERSCAN_API_KEY!,
         },
       },
+    },
+    mainnet: {
+      chainId: 1,
+      url: process.env.RPC_URL!,
+      accounts: [process.env.SIGNER_KEY!],
     },
   },
   typechain: {

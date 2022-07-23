@@ -1,6 +1,7 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 import { DeployFunction } from "hardhat-deploy/types"
 import readline from "readline"
+import { ethers } from "hardhat"
 
 function userInput(query: string): Promise<string> {
   const rl = readline.createInterface({
@@ -43,6 +44,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     log: true,
     args: [nounsDescriptor, ensReverseRecords],
     autoMine: true, // speed up deployment on local network (ganache, hardhat), no effect on live networks
+    gasPrice: ethers.utils.parseUnits("7", "gwei"),
   })
 }
 export default func

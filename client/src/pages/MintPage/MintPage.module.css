@@ -1,0 +1,14 @@
+.linksContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.linksContainer a {
+  margin-right: 8px;
+}
+
+.linksContainer a:hover {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  scale: 1.03;
+}

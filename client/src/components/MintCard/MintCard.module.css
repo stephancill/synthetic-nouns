@@ -1,0 +1,8 @@
+.downloadButton {
+  /* border: 2px solid black; */
+  background-color: white;
+}
+
+.downloadButton:hover {
+  background-color: white !important;
+}

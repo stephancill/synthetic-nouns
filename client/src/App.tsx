@@ -1,6 +1,6 @@
 import "./App.css"
 import "@rainbow-me/rainbowkit/dist/index.css"
-import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit"
+import { darkTheme, getDefaultWallets, midnightTheme, RainbowKitProvider } from "@rainbow-me/rainbowkit"
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi"
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc"
 import { publicProvider } from "wagmi/providers/public"

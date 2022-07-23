@@ -1,13 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Londrina+Solid&display=swap");
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #d5d7e1;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1 {
+  font-family: "Londrina Solid";
+  font-weight: 500;
+  font-size: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  padding: 10px 16px;
+  color: #fff;
+  border: transparent;
+  background-color: black;
+  font-weight: 700;
+  font-size: 18px;
+  border-radius: 12px !important;
+  cursor: pointer;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  transition: 0.1s;
+}
+
+button:disabled {
+  background-color: rgb(175, 175, 175);
+}
+
+button:hover {
+  background-color: rgb(80, 80, 80);
+  scale: 1.03;
 }

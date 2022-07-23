@@ -91,3 +91,9 @@ yarn hardhat etherscan-verify --network mainnet
 ```
 yarn hardhat typechain
 ```
+
+## Future improvements
+
+- Expose `generateSeed` function
+- Address preview should return data URL instead of just b64 encoded svg
+- Adjust @notice of `generateSeed` and `claim` methods in smart contract
