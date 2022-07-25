@@ -96,4 +96,5 @@ yarn hardhat typechain
 
 - Expose `generateSeed` function
 - Address preview should return data URL instead of just b64 encoded svg
-- Adjust @notice of `generateSeed` and `claim` methods in smart contract
+- Update @notice of `generateSeed` and `claim` methods in smart contract
+- Use `ERC721Enumerable` in order to be able to show the tokenURI of the claimed token given an address (A change to the descriptor contract will cause addressPreview and prior minted tokens to return different values)
