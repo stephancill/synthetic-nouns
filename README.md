@@ -2,6 +2,10 @@
 
 Synthetic nouns are nouns that are generated using the hash of the claimer's address as a seed. There exists one per address.
 
+### Governance
+
+Snapshot can be used for governance using the `synthetic-nouns-with-claimer` strategy. The strategy gives an address that still owns the synthetic noun that they minted the ability to vote on Snapshot.
+
 ### Run node
 
 ```
@@ -97,4 +101,6 @@ yarn hardhat typechain
 - Expose `generateSeed` function
 - Address preview should return data URL instead of just b64 encoded svg
 - Update @notice of `generateSeed` and `claim` methods in smart contract
-- Use `ERC721Enumerable` in order to be able to show the tokenURI of the claimed token given an address (A change to the descriptor contract will cause addressPreview and prior minted tokens to return different values)
+- Use `ERC721Enumerable` to get all the tokens owned by an address
+- Add a mapping to see if a token is still owned by its original minter
+- Add a function which lets you claim a token for another address and have it sent to that address
